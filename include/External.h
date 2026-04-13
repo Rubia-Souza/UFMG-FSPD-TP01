@@ -1,3 +1,6 @@
+#ifndef EXTERNAL_H
+#define EXTERNAL_H
+
 #include <stdio.h>
 #include <time.h>
 
@@ -39,3 +42,5 @@ void passa_tempo(int tid, int sala, int decimos) {
     printf("%3d ) %2d @%2d\n",tstamp,tid,sala);
 }
 /*********************** FIM DA FUNÇÃO *************************/
+
+#endif
