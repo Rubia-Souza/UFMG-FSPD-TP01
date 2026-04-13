@@ -6,7 +6,7 @@ BIN_FOLDER = ./bin/
 OBJ_FOLDER = ./obj/
 SRC_FOLDER = ./src/
 
-TARGET = run
+TARGET = app
 SRC = $(wildcard $(SRC_FOLDER)*.cpp)
 OBJ = $(patsubst $(SRC_FOLDER)%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
 
@@ -15,8 +15,12 @@ $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 
 all: build
 
+.PHONY: run
+
 run: $(TARGET)
 	$(BIN_FOLDER)$(TARGET)
+
+$(TARGET): build
 
 build: $(OBJ)
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLDER)$(TARGET) $(OBJ)
