@@ -4,7 +4,37 @@
 #include "Entidade.h"
 #include "VariaveisGlobais.h"
 
+void lerDadosEntrada();
+void limparVariaveisGlobais();
+
 int main() {
+    lerDadosEntrada();
+
+    std::cout << "===== Salas: =====" << std::endl;
+    for(Sala* sala : salas) {
+        std::cout << "Sala: " << sala->getId() << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << "===== Entidades: =====" << std::endl;
+    for(Entidade* entidade : entidades) {
+        std::cout << "Entidade: " << entidade->getId() << std::endl;
+        std::cout << "\tTempo Espera Inicial: " << entidade->getTempoEsperaInicial() << std::endl;
+
+        std::vector<Parada> caminho = entidade->getCaminho();
+        std::cout << "\tCaminho: Tamanho " << caminho.size() << std::endl;
+        for(Parada parada : caminho) {
+            std::cout << "\t\tSala: " << parada.getSala()->getId() << " - tempo espera " << parada.getTempoEspera() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+
+    limparVariaveisGlobais();
+
+    return 0;
+}
+
+void lerDadosEntrada() {
     int quantidadeSalas = -1;
     int quantidadeThreads = -1;
 
@@ -34,26 +64,9 @@ int main() {
 
         entidades.push_back(novaEntidade);
     }
+}
 
-    std::cout << "===== Salas: =====" << std::endl;
-    for(Sala* sala : salas) {
-        std::cout << "Sala: " << sala->getId() << std::endl;
-    }
-    std::cout << std::endl;
-
-    std::cout << "===== Entidades: =====" << std::endl;
-    for(Entidade* entidade : entidades) {
-        std::cout << "Entidade: " << entidade->getId() << std::endl;
-        std::cout << "\tTempo Espera Inicial: " << entidade->getTempoEsperaInicial() << std::endl;
-
-        std::vector<Parada> caminho = entidade->getCaminho();
-        std::cout << "\tCaminho: Tamanho " << caminho.size() << std::endl;
-        for(Parada parada : caminho) {
-            std::cout << "\t\tSala: " << parada.getSala()->getId() << " - tempo espera " << parada.getTempoEspera() << std::endl;
-        }
-    }
-    std::cout << std::endl;
-
+void limparVariaveisGlobais() {
     for(unsigned int i = 0; i < salas.size(); i++) {
         delete salas[i];
     }
@@ -61,6 +74,4 @@ int main() {
     for(unsigned int i = 0; i < entidades.size(); i++) {
         delete entidades[i];
     }
-
-    return 0;
 }

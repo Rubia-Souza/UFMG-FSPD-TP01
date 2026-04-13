@@ -1,7 +1,6 @@
 #include "Entidade.h"
 
 #include <vector>
-#include <unordered_map>
 
 #include "Sala.h"
 #include "Parada.h"
