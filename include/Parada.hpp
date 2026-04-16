@@ -3,6 +3,8 @@
 
 #include "Sala.hpp"
 
+class Sala;
+
 class Parada {
     private:
         Sala* sala = nullptr;

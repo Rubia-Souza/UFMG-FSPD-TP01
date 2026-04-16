@@ -8,6 +8,7 @@
 #include "Parada.hpp"
 
 class Sala;
+class Parada;
 
 class Entidade {
     private:
