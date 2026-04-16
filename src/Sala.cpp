@@ -1,4 +1,4 @@
-#include "Sala.h"
+#include "Sala.hpp"
 
 Sala::Sala(const int id) {
     this->id = id;

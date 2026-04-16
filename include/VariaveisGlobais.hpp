@@ -1,10 +1,10 @@
-#ifndef VARIAVEIS_GLOBAIS_H
-#define VARIAVEIS_GLOBAIS_H
+#ifndef VARIAVEIS_GLOBAIS_HPP
+#define VARIAVEIS_GLOBAIS_HPP
 
 #include <vector>
 
-#include "Sala.h"
-#include "Entidade.h"
+#include "Sala.hpp"
+#include "Entidade.hpp"
 
 extern std::vector<Sala*> salas;
 extern std::vector<Entidade*> entidades;

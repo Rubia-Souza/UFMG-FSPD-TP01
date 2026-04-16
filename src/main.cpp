@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "Sala.h"
-#include "Entidade.h"
-#include "VariaveisGlobais.h"
+#include "Sala.hpp"
+#include "Entidade.hpp"
+#include "VariaveisGlobais.hpp"
 
 void lerDadosEntrada();
 void limparVariaveisGlobais();

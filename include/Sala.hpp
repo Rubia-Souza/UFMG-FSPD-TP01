@@ -1,5 +1,5 @@
-#ifndef SALA_H
-#define SALA_H
+#ifndef SALA_HPP
+#define SALA_HPP
 
 class Sala {
     private:

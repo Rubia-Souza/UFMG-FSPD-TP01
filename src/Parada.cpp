@@ -1,6 +1,6 @@
-#include "Parada.h"
+#include "Parada.hpp"
 
-#include "Sala.h"
+#include "Sala.hpp"
 
 Parada::Parada(Sala* sala, const int tempoEspera) {
     this->sala = sala;

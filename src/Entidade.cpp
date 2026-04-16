@@ -1,9 +1,9 @@
-#include "Entidade.h"
+#include "Entidade.hpp"
 
 #include <vector>
 
-#include "Sala.h"
-#include "Parada.h"
+#include "Sala.hpp"
+#include "Parada.hpp"
 
 Entidade::Entidade(const int id, const int tempoEsperaInicial, const int quantidadeSalasCaminho) {
     this->id = id;

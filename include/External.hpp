@@ -1,5 +1,5 @@
-#ifndef EXTERNAL_H
-#define EXTERNAL_H
+#ifndef EXTERNAL_HPP
+#define EXTERNAL_HPP
 
 #include <stdio.h>
 #include <time.h>

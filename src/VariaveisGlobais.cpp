@@ -1,9 +1,9 @@
-#include "VariaveisGlobais.h"
+#include "VariaveisGlobais.hpp"
 
 #include <vector>
 
-#include "Sala.h"
-#include "Entidade.h"
+#include "Sala.hpp"
+#include "Entidade.hpp"
 
 std::vector<Sala*> salas;
 std::vector<Entidade*> entidades;

@@ -1,10 +1,10 @@
-#ifndef ENTIDADE_H
-#define ENTIDADE_H
+#ifndef ENTIDADE_HPP
+#define ENTIDADE_HPP
 
 #include <vector>
 
-#include "Sala.h"
-#include "Parada.h"
+#include "Sala.hpp"
+#include "Parada.hpp"
 
 class Entidade {
     private:

@@ -1,7 +1,7 @@
-#ifndef PARADA_H
-#define PARADA_H
+#ifndef PARADA_HPP
+#define PARADA_HPP
 
-#include "Sala.h"
+#include "Sala.hpp"
 
 class Parada {
     private:
