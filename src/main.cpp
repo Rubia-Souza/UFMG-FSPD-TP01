@@ -2,29 +2,32 @@
 #include <vector>
 
 #include "External.hpp"
-#include "VariaveisGlobais.hpp"
 #include "Sala.hpp"
 #include "Entidade.hpp"
 #include "Parada.hpp"
 
-void lerDadosEntrada();
-void dispararThreadsEntidades();
+void lerDadosEntrada(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades);
+Sala* getSalaByID(const int id, std::vector<Sala*>& salas);
+void dispararThreadsEntidades(std::vector<Entidade*>& entidades);
 void* runThreadEntidade(void* args);
-void esperarExecucaoThreads();
-void limparVariaveisGlobais();
-void printDadosEntrada();
+void esperarExecucaoThreads(std::vector<Entidade*>& entidades);
+void limparDadosAlocados(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades);
+void printDadosEntrada(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades);
 
 int main() {
-    lerDadosEntrada();
-    printDadosEntrada();
-    dispararThreadsEntidades();
-    esperarExecucaoThreads();
-    limparVariaveisGlobais();
+    std::vector<Sala*> salas;
+    std::vector<Entidade*> entidades;
+
+    lerDadosEntrada(salas, entidades);
+    printDadosEntrada(salas, entidades);
+    dispararThreadsEntidades(entidades);
+    esperarExecucaoThreads(entidades);
+    limparDadosAlocados(salas, entidades);
 
     return 0;
 }
 
-void lerDadosEntrada() {
+void lerDadosEntrada(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades) {
     int quantidadeSalas = -1;
     int quantidadeThreads = -1;
 
@@ -48,7 +51,7 @@ void lerDadosEntrada() {
 
             std::cin >> identificadorSala >> tempoEsperaSala;
 
-            Sala* salaAlvo = getSalaByID(identificadorSala);
+            Sala* salaAlvo = getSalaByID(identificadorSala, salas);
             novaEntidade->adicionarParada(salaAlvo, tempoEsperaSala);
         }
 
@@ -56,7 +59,17 @@ void lerDadosEntrada() {
     }
 }
 
-void dispararThreadsEntidades() {
+Sala* getSalaByID(const int id, std::vector<Sala*>& salas) {
+    for(Sala* sala : salas) {
+        if(sala->getId() == id) {
+            return sala;
+        }
+    }
+
+    return nullptr;
+}
+
+void dispararThreadsEntidades(std::vector<Entidade*>& entidades) {
     for(Entidade* entidade : entidades) {
         if(pthread_create(entidade->getIdThread(), NULL, runThreadEntidade, (void*) entidade) != 0) {
             std::cout << "[ERROR]: Erro ao criar thread para entidade de ID: " << entidade->getId() << "." << std::endl;
@@ -89,23 +102,25 @@ void* runThreadEntidade(void* args) {
     return NULL;
 }
 
-void esperarExecucaoThreads() {
+void esperarExecucaoThreads(std::vector<Entidade*>& entidades) {
     for(Entidade* entidade : entidades) {
         pthread_join(*entidade->getIdThread(), NULL);
     }
 }
 
-void limparVariaveisGlobais() {
+void limparDadosAlocados(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades) {
     for(unsigned int i = 0; i < salas.size(); i++) {
         delete salas[i];
     }
+    salas.clear();
 
     for(unsigned int i = 0; i < entidades.size(); i++) {
         delete entidades[i];
     }
+    entidades.clear();
 }
 
-void printDadosEntrada() {
+void printDadosEntrada(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades) {
     std::cout << "============================" << std::endl;
     std::cout << "===== Salas: =====" << std::endl;
     for(Sala* sala : salas) {
