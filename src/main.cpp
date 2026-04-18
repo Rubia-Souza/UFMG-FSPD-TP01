@@ -6,16 +6,69 @@
 #include "Entidade.hpp"
 #include "Parada.hpp"
 
+/**
+ * @brief Função responsável por ler os dados de entrada e inicializar os vetores
+ * de salas e entidades, instanciando os respectivos objetos com os valores lidos.
+ * 
+ * @param salas O vetor com as salas que as entidades podem entrar.
+ * @param entidades O vetor em com as entidades que representam as threads.
+ */
 void lerDadosEntrada(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades);
+
+/**
+ * @brief Encontra uma sala com o ID especificado no vetor de salas.
+ * 
+ * @param id O ID da sala que será buscada.
+ * @param salas O vetor de salas onde ocorrerá a busca.
+ * @return Sala* Uma referência para a sala encontrada ou nullptr caso não encontrada.
+ */
 Sala* getSalaByID(const int id, std::vector<Sala*>& salas);
+
+/**
+ * @brief Função que inicializa as threads de cada entidade e associa o ID da thread
+ * a entidade.
+ * 
+ * @param entidades O vetor com as entidades que serão associadas às threads.
+ */
 void dispararThreadsEntidades(std::vector<Entidade*>& entidades);
+
+/**
+ * @brief Função executada por cada entidade que simula o movimento entre as salas.
+ * 
+ * @param args A entidade associada a thread em execução.
+ * @return void* nullptr.
+ */
 void* runThreadEntidade(void* args);
+
+/**
+ * @brief Função que faz a main() esperar até o fim da execução de todas as threads.
+ * 
+ * @param entidades O vetor com as entidades em execução.
+ */
 void esperarExecucaoThreads(const std::vector<Entidade*>& entidades);
+
+/**
+ * @brief Função que desaloca as salas e entidades instanciadas.
+ * 
+ * @param salas O vetor com as salas.
+ * @param entidades O vetor com as entidades.
+ */
 void limparDadosAlocados(std::vector<Sala*>& salas, std::vector<Entidade*>& entidades);
+
+/**
+ * @brief Função auxiliar que imprime os dados lidos na entrada e armazenados em cada
+ * sala e entidade instanciada.
+ * 
+ * @param salas O vetor com as salas.
+ * @param entidades O vetor com as entidades.
+ */
 void printDadosEntrada(const std::vector<Sala*>& salas, const std::vector<Entidade*>& entidades);
 
 int main() {
+    // O vetor de salas contém as salas em que as entidades podem entrar e sair durante a execução.
     std::vector<Sala*> salas;
+
+    // O vetor de entidades contém as entidades que estão associadas, cada uma, a sua respectiva thread.
     std::vector<Entidade*> entidades;
 
     lerDadosEntrada(salas, entidades);
