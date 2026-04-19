@@ -19,13 +19,18 @@ class Parada;
 class Entidade {
     private:
         int id = -1;
+        /// @brief Armazena o ID da thread associada a esta entidade.
         pthread_t idThread;
+        /// @brief Armazena o tempo de espera da entidade antes de entrar no tabuleiro.
         int tempoEsperaInicial = -1;
 
         int quantidadeSalasCaminho = -1;
+        /// @brief É o caminho com as salas que a entidade deve seguir e o tempo de espera em cada uma.
         std::vector<Parada> caminho;
 
+        /// @brief É a sala em que a entidade está dentro atualmente.
         Sala* salaAtual = nullptr;
+        /// @brief É a sala em que a entidade estava na última iteração.
         Sala* salaAnterior = nullptr;
 
     public:
