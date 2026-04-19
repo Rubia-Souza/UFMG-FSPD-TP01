@@ -54,7 +54,6 @@ void Sala::entrar(Entidade* entidadeEntrando) {
     this->quantidadeEntidadesPresentes++;
     // Decrementa a contagem de entidades esperando para entrar na sala.
     this->quantidadeEntidadesEmEspera--;
-    // TODO: Talvez guardar uma lista das threads em espera e na sala
 
     bool ehUltimaDoTrioEntrando = (this->estaVazia && this->quantidadeEntidadesPresentes == QUANTIDADE_THREADS_POR_SALA);
     if(ehUltimaDoTrioEntrando) { // Verifica se é a última entidade do trio que está entrando na sala.

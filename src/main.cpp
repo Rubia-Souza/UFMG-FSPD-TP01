@@ -73,8 +73,6 @@ int main() {
     std::vector<Entidade*> entidades;
 
     lerDadosEntrada(salas, entidades);
-    // TODO: Remover print antes de enviar
-    printDadosEntrada(salas, entidades);
     dispararThreadsEntidades(entidades);
     esperarExecucaoThreads(entidades);
     limparDadosAlocados(salas, entidades);
