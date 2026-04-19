@@ -78,7 +78,7 @@ void Sala::sair(Entidade* entidadeSaindo) {
     // Decrementa a quantidade de entidades dentro da sala.
     this->quantidadeEntidadesPresentes--;
 
-    if(this->salaFicouDisponivel()) { // Verifica se a sala ficou vazia.
+    if(this->salaFicouVazia()) { // Verifica se a sala ficou vazia.
         this->estaVazia = true;
         // Se sim, verifica se as condições para entrar na sala foram atendidas.
         this->entradaDisponivel = this->ehPossivelEntrarNaSala();
@@ -107,7 +107,7 @@ bool Sala::ehPossivelEntrarNaSala() const {
     return this->estaVazia && this->ehPossivelFormarUmTrio();
 }
 
-bool Sala::salaFicouDisponivel() const {
+bool Sala::salaFicouVazia() const {
     // A sala fica vazia quando, antriormente, ela não estava vazia e a quantidade de entidades dentro dela chegou em 0.
     return !this->estaVazia && this->quantidadeEntidadesPresentes == 0;
 }

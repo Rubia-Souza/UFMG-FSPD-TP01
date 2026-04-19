@@ -101,7 +101,7 @@ class Sala {
          * @return true Se a sala ficou disponível para o próximo trio entrar.
          * @return false Se a sala ainda não ficou disponível para o próximo trio entrar.
          */
-        bool salaFicouDisponivel() const;
+        bool salaFicouVazia() const;
 };
 
 #endif
