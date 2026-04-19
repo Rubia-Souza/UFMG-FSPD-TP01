@@ -12,7 +12,9 @@ class Sala;
  */
 class Parada {
     private:
+        /// @brief A sala onde a entidade deve entrar.
         Sala* sala = nullptr;
+        /// @brief O tempo que a entidade deve esperar dentro da sala.
         int tempoEspera = -1;
 
     public:
