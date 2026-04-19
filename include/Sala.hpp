@@ -7,15 +7,27 @@
 
 class Entidade;
 
+/**
+ * @brief Salas são onde as entidades entram em conjunto e passam
+ * o tempo. Elas são responsáveis por controlar a sincronização
+ * de entrada e saida das threads, durante o caminho seguido elas.
+ * 
+ */
 class Sala {
     private:
         int id = -1;
+        /// @brief Representa a quantidade de Entidades que estão dentro da sala no momento.
         int quantidadeEntidadesPresentes = -1;
+        /// @brief Representa a quantidade de Entidades que estão esperando para entrar na sala.
         int quantidadeEntidadesEmEspera = -1;
+        /// @brief Indica se a sala esta vazia. Ou seja, sem Entidades dentro dela.
         bool estaVazia = false;
+        /// @brief Indica se as Entidades que estão esperando para entrar podem entrar na sala.
         bool entradaDisponivel = false;
 
+        /// @brief Mutex que sincroniza a entrada e saida das Entidades.
         pthread_mutex_t mutexSala;
+        /// @brief Condição que notifica as Entidades em espera que a entrada na sala está disponível.
         pthread_cond_t condicaoSalaDisponivel;
 
     public:
