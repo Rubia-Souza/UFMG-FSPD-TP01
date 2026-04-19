@@ -137,20 +137,26 @@ void* runThreadEntidade(void* args) {
     Entidade* entidade = static_cast<Entidade*>(args);
     std::vector<Parada> caminho = entidade->getCaminho();
 
+    // O tempo de espera inicial antes da entidade entrar no tabuleiro.
     passa_tempo(entidade->getId(), 0, entidade->getTempoEsperaInicial());
 
+    // A entidade começa a percorrer o caminho dela.
     for(Parada parada : caminho) {
         Sala* proximaSala = parada.getSala();
         Sala* salaAnterior = entidade->getSalaAtual();
 
+        // Tenta entrar na próxima sala. Neste ponto, ela pode entrar em espera.
         proximaSala->entrar(entidade);
+        // Quando consegue entrar na próxima sala, ela sai da sala que estava anteriormente.
         if(salaAnterior != nullptr) {
             salaAnterior->sair(entidade);
         }
 
+        // Passa o tempo até a próxima iteração.
         passa_tempo(entidade->getId(), entidade->getSalaAtual()->getId(), parada.getTempoEspera());
     }
 
+    // A entidade saí da última sala.
     entidade->getSalaAtual()->sair(entidade);
     entidade->setSalaAtual(nullptr);
 
