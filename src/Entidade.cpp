@@ -1,6 +1,7 @@
 #include "Entidade.hpp"
 
 #include <vector>
+#include <pthread.h>
 
 #include "Sala.hpp"
 #include "Parada.hpp"

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <pthread.h>
 
 #include "External.hpp"
 #include "Sala.hpp"
