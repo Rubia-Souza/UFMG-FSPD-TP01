@@ -13,8 +13,8 @@ Sala::Sala(const int id) {
     this->estaVazia = true;
     this->entradaDisponivel = false;
 
-    this->mutexSala = PTHREAD_MUTEX_INITIALIZER;
-    this->condicaoSalaDisponivel = PTHREAD_COND_INITIALIZER;
+    pthread_mutex_init(&this->mutexSala, NULL);
+    pthread_cond_init(&this->condicaoSalaDisponivel, NULL);
 }
 
 Sala::~Sala() {
@@ -23,6 +23,9 @@ Sala::~Sala() {
     this->quantidadeEntidadesEmEspera = -1;
     this->estaVazia = false;
     this->entradaDisponivel = false;
+
+    pthread_mutex_destroy(&this->mutexSala);
+    pthread_cond_destroy(&this->condicaoSalaDisponivel);
 }
 
 void Sala::entrar(Entidade* entidadeEntrando) {
